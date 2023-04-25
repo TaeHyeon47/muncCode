@@ -1,5 +1,18 @@
 import * as esbuild from 'esbuild-wasm';
 import axios from 'axios';
+import localforage from 'localforage';
+
+const fileCache = localforage.createInstance({
+  name: 'filecache',
+});
+
+(async () => {
+  await fileCache.setItem('color', 'red');
+
+  const color = await fileCache.getItem('color');
+
+  console.log(color);
+})();
 
 export const unpkgPathPlugin = () => {
   return {
@@ -7,6 +20,7 @@ export const unpkgPathPlugin = () => {
     setup(build: esbuild.PluginBuild) {
       build.onResolve({ filter: /.*/ }, async (args: any) => {
         console.log('onResole', args);
+
         if (args.path === 'index.js') {
           return { path: args.path, namespace: 'a' };
         }
@@ -34,19 +48,34 @@ export const unpkgPathPlugin = () => {
           return {
             loader: 'jsx',
             contents: `
-              const message = require('nested-test-pkg');
-              console.log(message);
+              import React, { useState } from 'react';
+              import ReactDOM from 'react-dom';
+              console.log(React, useState, ReactDOM);
             `,
           };
         }
 
+        // Check to see if we have already fetched this file
+        // and if it is in the cache
+        const cachedResult = await fileCache.getItem(args.path);
+
+        // if it is, return it immediately
+        if (cachedResult) {
+          return cachedResult;
+        }
+
         const { data, request } = await axios.get(args.path);
-        console.log(request);
-        return {
+        // store response in cache
+
+        const result = {
           loader: 'jsx',
           contents: data,
           resolveDir: new URL('./', request.responseURL).pathname,
         };
+        // store response in cache
+        await fileCache.setItem(args.path, result);
+
+        return result;
       });
     },
   };
