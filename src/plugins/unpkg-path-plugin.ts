@@ -6,25 +6,26 @@ const fileCache = localforage.createInstance({
   name: 'filecache',
 });
 
-(async () => {
-  await fileCache.setItem('color', 'red');
-
-  const color = await fileCache.getItem('color');
-
-  console.log(color);
-})();
-
-export const unpkgPathPlugin = () => {
+export const unpkgPathPlugin = (inputCode: string) => {
   return {
     name: 'unpkg-path-plugin',
     setup(build: esbuild.PluginBuild) {
+      // Handle root entry file of 'index.js'
+      build.onResolve({ filter: /(^index\.js$)/ }, () => {
+        return { path: 'index.js', namespace: 'a' };
+      });
+
+      // Handle relative paths in a module
+      build.onResolve({ filter: /^\.+\// }, (args: any) => {
+        return {
+          namespace: 'a',
+          path: new URL(args.path, 'https://unpkg.com' + args.resolveDir + '/')
+            .href,
+        };
+      });
+
+      // Handle main file of a module
       build.onResolve({ filter: /.*/ }, async (args: any) => {
-        console.log('onResole', args);
-
-        if (args.path === 'index.js') {
-          return { path: args.path, namespace: 'a' };
-        }
-
         if (args.path.includes('./') || args.path.includes('../')) {
           return {
             namespace: 'a',
@@ -47,27 +48,19 @@ export const unpkgPathPlugin = () => {
         if (args.path === 'index.js') {
           return {
             loader: 'jsx',
-            contents: `
-              import React, { useState } from 'react';
-              import ReactDOM from 'react-dom';
-              console.log(React, useState, ReactDOM);
-            `,
+            contents: inputCode,
           };
         }
 
-        // Check to see if we have already fetched this file
-        // and if it is in the cache
         const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
           args.path
         );
 
-        // if it is, return it immediately
         if (cachedResult) {
           return cachedResult;
         }
 
         const { data, request } = await axios.get(args.path);
-        // store response in cache
 
         const result: esbuild.OnLoadResult = {
           loader: 'jsx',
@@ -75,7 +68,6 @@ export const unpkgPathPlugin = () => {
           resolveDir: new URL('./', request.responseURL).pathname,
         };
 
-        // store response in cache
         await fileCache.setItem(args.path, result);
 
         return result;
