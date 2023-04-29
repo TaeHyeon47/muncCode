@@ -11,7 +11,6 @@ export const fetchPlugin = (inputCode: string) => {
     name: 'fetch-plugin',
     setup(build: esbuild.PluginBuild) {
       build.onLoad({ filter: /.*/, namespace: 'a' }, async (args: any) => {
-        console.log('%%%%%%%%%%%%%%%%%%', args);
         if (args.path === 'index.js') {
           return {
             loader: 'jsx',
@@ -19,22 +18,23 @@ export const fetchPlugin = (inputCode: string) => {
           };
         }
 
-        // const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
-        //   args.path
-        // );
-
-        // if (cachedResult) {
-        //   return cachedResult;
-        // }
-
         const { data, request } = await axios.get(args.path);
 
         const fileType = args.path.match(/.css$/) ? 'css' : 'jsx';
+
+        console.log(data.replace(/\n/g, ''));
+        console.log(data.replace(/\n/g, '').replace(/"/g, '\\"'));
+
+        const escaped = data
+          .replace(/\n/g, '')
+          .replace(/"/g, '\\"')
+          .replace(/'/g, "\\'");
+
         const contents =
           fileType === 'css'
             ? `
           const style = document.createElement('style');
-          style.innerText = 'body { background-color: "red"}';
+          style.innerText = '${escaped}';
           document.head.appendChild(style);
         `
             : data;
