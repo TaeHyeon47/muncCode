@@ -3,6 +3,7 @@ import MonacoEditor from '@monaco-editor/react';
 const CodeEditor = () => {
   return (
     <MonacoEditor
+      value="const a = 1;"
       theme='dark'
       language='javascript'
       height='500px'
