@@ -33,13 +33,14 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
   useEffect(() => {
     // HTML elements 초기화
     iframe.current.srcdoc = html;
-    iframe.current.contentWindow.postMessage(code, '*');
+    setTimeout(() => {
+      iframe.current.contentWindow.postMessage(code, '*');
+    }, 50);
   }, [code]);
 
   return (
     <div className='preview-wrapper'>
       <iframe
-        //   style={{ backgroundColor: 'white' }}
         title='preview'
         ref={iframe}
         sandbox='allow-scripts'
