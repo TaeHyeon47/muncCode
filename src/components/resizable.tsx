@@ -1,4 +1,5 @@
 import './resizable.css';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { ResizableBox, ResizableBoxProps } from 'react-resizable';
 
@@ -58,7 +59,11 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
     };
   }
 
-  return <ResizableBox {...resizableProps}>{children}</ResizableBox>;
+  return (
+    <React.Fragment>
+      <ResizableBox {...resizableProps}>{children}</ResizableBox>
+    </React.Fragment>
+  );
 };
 
 export default Resizable;
