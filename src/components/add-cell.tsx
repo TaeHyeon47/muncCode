@@ -12,7 +12,6 @@ const AddCell: React.FC<AddCellProps> = ({ forceVisible, nextCellId }) => {
   return (
     <div className={`add-cell ${forceVisible && 'force-visible'}`}>
       <div className="add-buttons">
-        <div></div>
         <button
           className="button is-rounded is-primary is-small"
           onClick={() => insertCellBefore(nextCellId, 'code')}
