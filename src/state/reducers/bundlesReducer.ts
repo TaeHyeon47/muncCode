@@ -4,11 +4,13 @@ import { Action } from '../actions';
 
 interface BundlesState {
   // key: cell의 id가 될 예정
-  [key: string]: {
-    loading: boolean;
-    code: string;
-    err: string;
-  };
+  [key: string]:
+    | {
+        loading: boolean;
+        code: string;
+        err: string;
+      }
+    | undefined;
 }
 
 const initialState: BundlesState = {};
