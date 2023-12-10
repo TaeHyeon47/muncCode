@@ -1,16 +1,13 @@
-import { produce } from 'immer';
+import produce from 'immer';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
 interface BundlesState {
-  // key: cell의 id가 될 예정
-  [key: string]:
-    | {
-        loading: boolean;
-        code: string;
-        err: string;
-      }
-    | undefined;
+  [key: string]: {
+    loading: boolean;
+    code: string;
+    err: string;
+  };
 }
 
 const initialState: BundlesState = {};

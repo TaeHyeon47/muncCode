@@ -11,9 +11,6 @@ interface CodeCellProps {
 }
 
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
-  // Local State
-  // const [code, setCode] = useState('');
-  // const [err, setErr] = useState('');
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
   console.log(bundle);
@@ -21,27 +18,29 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   useEffect(() => {
     const timer = setTimeout(async () => {
       createBundle(cell.id, cell.content);
-      // Local State
-      // const output = await bundle(cell.content);
-      // setCode(output.code);
-      // setErr(output.err);
-    }, 500);
+    }, 750);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [cell.content, cell.id, createBundle]);
+  }, [cell.content, cell.id]);
 
   return (
-    <Resizable direction='vertical'>
-      <div style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
-        <Resizable direction='horizontal'>
+    <Resizable direction="vertical">
+      <div
+        style={{
+          height: 'calc(100% - 10px)',
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <Resizable direction="horizontal">
           <CodeEditor
             initialValue={cell.content}
             onChange={(value) => updateCell(cell.id, value)}
           />
         </Resizable>
-        {bundle && <Preview code={bundle.code} err={bundle.err} />}
+        {/* <Preview code={code} err={err} /> */}
       </div>
     </Resizable>
   );

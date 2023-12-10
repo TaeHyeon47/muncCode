@@ -1,5 +1,4 @@
 import './resizable.css';
-import React from 'react';
 import { useEffect, useState } from 'react';
 import { ResizableBox, ResizableBoxProps } from 'react-resizable';
 
@@ -20,7 +19,6 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
       if (timer) {
         clearTimeout(timer);
       }
-
       timer = setTimeout(() => {
         setInnerHeight(window.innerHeight);
         setInnerWidth(window.innerWidth);
@@ -29,7 +27,6 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
         }
       }, 100);
     };
-
     window.addEventListener('resize', listener);
 
     return () => {
@@ -59,11 +56,7 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
     };
   }
 
-  return (
-    <React.Fragment>
-      <ResizableBox {...resizableProps}>{children}</ResizableBox>
-    </React.Fragment>
-  );
+  return <ResizableBox {...resizableProps}>{children}</ResizableBox>;
 };
 
 export default Resizable;
