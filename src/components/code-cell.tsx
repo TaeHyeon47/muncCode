@@ -13,7 +13,6 @@ interface CodeCellProps {
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
-  console.log(bundle);
 
   useEffect(() => {
     const timer = setTimeout(async () => {
@@ -26,7 +25,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   }, [cell.content, cell.id]);
 
   return (
-    <Resizable direction="vertical">
+    <Resizable direction='vertical'>
       <div
         style={{
           height: 'calc(100% - 10px)',
@@ -34,13 +33,13 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
           flexDirection: 'row',
         }}
       >
-        <Resizable direction="horizontal">
+        <Resizable direction='horizontal'>
           <CodeEditor
             initialValue={cell.content}
             onChange={(value) => updateCell(cell.id, value)}
           />
         </Resizable>
-        {/* <Preview code={code} err={err} /> */}
+        {bundle && <Preview code={bundle.code} err={bundle.err} />}
       </div>
     </Resizable>
   );
