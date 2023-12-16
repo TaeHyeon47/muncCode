@@ -57,9 +57,9 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
   };
 
   return (
-    <div className="editor-wrapper">
+    <div className='editor-wrapper'>
       <button
-        className="button button-format is-primary is-small"
+        className='button button-format is-primary is-small'
         onClick={onFormatClick}
       >
         Format
@@ -67,9 +67,9 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
       <MonacoEditor
         editorDidMount={onEditorDidMount}
         value={initialValue}
-        theme="dark"
-        language="javascript"
-        height="100%"
+        theme='dark'
+        language='javascript'
+        height='100%'
         options={{
           wordWrap: 'on',
           minimap: { enabled: false },

@@ -6,6 +6,7 @@ import Resizable from './resizable';
 import { Cell } from '../state';
 import { useActions } from '../hooks/use-actions';
 import { useTypedSelector } from '../hooks/use-typed-selector';
+import { useCumulativeCode } from '../hooks/use-cumulative-code';
 
 interface CodeCellProps {
   cell: Cell;
@@ -14,58 +15,17 @@ interface CodeCellProps {
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
-  const cumulativeCode = useTypedSelector((state) => {
-    const { data, order } = state.cells;
-
-    const orderedCells = order.map((id) => data[id]);
-
-    const showFunc = `
-    import _React from 'react';
-    import _ReactDOM from 'react-dom';
-
-    var show = (value) => {
-      const root = document.querySelector('#root');
-      
-      if (typeof value === 'object') {
-        if (value.$$typeof && value.props) {
-          _ReactDOM.render(value, root);
-        } else {
-          root.innerHTML = JSON.stringify(value);
-        }
-      } else {
-        root.innerHTML = value;
-      }
-    };
-    `;
-    const showFuncNoop = 'var show = () => {}';
-
-    const cumulativeCode = [];
-
-    for (let c of orderedCells) {
-      if (c.type === 'code') {
-        if (c.id === cell.id) {
-          cumulativeCode.push(showFunc);
-        } else {
-          cumulativeCode.push(showFuncNoop);
-        }
-        cumulativeCode.push(c.content);
-      }
-      if (c.id === cell.id) {
-        break;
-      }
-    }
-    return cumulativeCode;
-  });
+  const cumulativeCode = useCumulativeCode(cell.id);
 
   useEffect(() => {
     // 새로고침 시, 깜빡거림 제거
     if (!bundle) {
-      createBundle(cell.id, cumulativeCode.join('\n'));
+      createBundle(cell.id, cumulativeCode);
       return;
     }
 
     const timer = setTimeout(async () => {
-      createBundle(cell.id, cumulativeCode.join('\n'));
+      createBundle(cell.id, cumulativeCode);
     }, 750);
 
     return () => {
@@ -74,7 +34,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
 
     // bundle을 넣을 경우 무한 루프가 나오기 때문에 아래의 무시 구문을 추가해야함.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cumulativeCode.join('\n'), cell.content, cell.id, createBundle]);
+  }, [cumulativeCode, cell.content, cell.id, createBundle]);
 
   return (
     <Resizable direction='vertical'>
