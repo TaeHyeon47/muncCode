@@ -53,10 +53,16 @@ https://esbuild.github.io/
 <img width="896" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/aa57b942-a667-4c19-8fe9-285e60e81444">
 
 ### 👨‍👧‍👧 아키텍쳐 개선
-- 코드 번들링 과정을 모두 API 통신으로 처리하는 Code Pen과 같은 일반적인 코딩 툴 사이트는 아래와 같은 구조로 되어 있다.
+
+#### 개선 전
+- Code Pen과 같은 일반적인 코딩 툴 사이트는 코드 번들링 과정이 모두 API 통신으로 처리된다.
+- 아래와 같이 2개의 API를 호출하여 복잡한 구조를 가진다.
+
 ![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/29878dd3-9819-4a67-aa52-a213bb9e028d)
 
-- ESBuild를 사용한 코드 번들링을 추가하고, iframe의 옵션값을 활용하여 아래와 같이 아키텍처를 개선 (더 자세한 내용은 블로그 링크 참조) 
+#### 개선 후
+- ESBuild를 사용한 코드 번들링으로 API 통신을 생략하고, iframe의 옵션값을 활용하여 HTML과 JS파일 API 통신 과정을 간소화했습니다. (더 자세한 내용은 블로그 링크 참조) 
+
 ![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/f7f37517-bcaa-4b5a-8dc8-4738e63f8c8d)
 
 
