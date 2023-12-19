@@ -46,5 +46,4 @@ https://esbuild.github.io/
 ### 👨‍👧‍👧 ESBuild를 통한 코드 번들링 과정
 - ESBuild를 웹에서 동작하기 위해서 Webassembly 버전인 'ESBuild wasm'을 사용.
 - 웹에서 ESBuild를 사용하여 React 코드를 번들링하는 경우 React 모듈 파일을 찾을 수 없음. 따라서 아래의 그림과 같이 Plugin을 사용하여 별도의 NPM 저장소에서 React 모듈을 가져오는 방식으로 구현  
-
-![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/5af03ce6-6200-4e04-bcee-06a1c13f98c8)
+<img width="896" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/aa57b942-a667-4c19-8fe9-285e60e81444">
