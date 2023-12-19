@@ -58,11 +58,12 @@ https://esbuild.github.io/
 - Code Pen과 같은 일반적인 코딩 툴 사이트는 코드 번들링 과정이 모두 API 통신으로 처리된다.
 - 아래와 같이 2개의 API를 호출하여 복잡한 구조를 가진다.
 
-![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/29878dd3-9819-4a67-aa52-a213bb9e028d)
+<img width="896" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/29878dd3-9819-4a67-aa52-a213bb9e028d">
+
 
 #### 개선 후
 - ESBuild를 사용한 코드 번들링으로 API 통신을 생략하고, iframe의 옵션값을 활용하여 HTML과 JS파일 API 통신 과정을 간소화했습니다. (더 자세한 내용은 블로그 링크 참조) 
-<img width="796" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/453d87cf-ec27-409b-a8af-3dbff51aeb8d">
+<img width="896" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/453d87cf-ec27-409b-a8af-3dbff51aeb8d">
 
 
 
