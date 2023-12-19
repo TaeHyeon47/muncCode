@@ -40,7 +40,7 @@ https://esbuild.github.io/
 
 ### 👨‍👧‍👧 ESBuild란?
 - 바벨과 웹팩을 한번에 동작시켜 코드를 번들링해주는 모듈.
-![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/8ff3262e-4da0-4483-b6e4-2eac6459caed)
+![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/0d3b3fb0-a847-4d3b-be4c-6be05c879d63)
 
 
 ### 👨‍👧‍👧 ESBuild를 통한 코드 번들링 과정
