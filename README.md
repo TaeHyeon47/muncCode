@@ -62,8 +62,8 @@ https://esbuild.github.io/
 
 #### 개선 후
 - ESBuild를 사용한 코드 번들링으로 API 통신을 생략하고, iframe의 옵션값을 활용하여 HTML과 JS파일 API 통신 과정을 간소화했습니다. (더 자세한 내용은 블로그 링크 참조) 
+<img width="796" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/453d87cf-ec27-409b-a8af-3dbff51aeb8d">
 
-![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/f7f37517-bcaa-4b5a-8dc8-4738e63f8c8d)
 
 
 
