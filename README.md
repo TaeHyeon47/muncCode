@@ -20,8 +20,8 @@ https://esbuild.github.io/
 - ESBuild, Localforage
 - HTML5, CSS
 
-### 👨‍👧‍👧 Frontend 사용 패키지
-- ESBuild
+### 👨‍👧‍👧 NPM 사용 패키지
+- ESBuild wasm
   - 브라우저 내에서 코드 Bundling을 위해 사용
   - ESBuild는 Babel의 Transpiling 과정과 Webpack의 Bundling 과정을 통합시켜 브라우저 내에서 코드 Bundle을 가능하게 함.
 - Localforage
@@ -37,3 +37,14 @@ https://esbuild.github.io/
   - 테마 적용을 위해 사용
 - Jscodeshift
   - Meta(Faceboob)에서 만들었으며, Javascript/TypeScript 수정 도구. 국내에서는 토스에서 사용 중.
+
+### 👨‍👧‍👧 ESBuild란?
+- 바벨과 웹팩을 한번에 동작시켜 코드를 번들링해주는 모듈.
+![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/8ff3262e-4da0-4483-b6e4-2eac6459caed)
+
+
+### 👨‍👧‍👧 ESBuild를 통한 코드 번들링 과정
+- ESBuild를 웹에서 동작하기 위해서 Webassembly 버전인 'ESBuild wasm'을 사용.
+- 웹에서 ESBuild를 사용하여 React 코드를 번들링하는 경우 React 모듈 파일을 찾을 수 없음. 따라서 아래의 그림과 같이 Plugin을 사용하여 별도의 NPM 저장소에서 React 모듈을 가져오는 방식으로 구현  
+
+![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/5af03ce6-6200-4e04-bcee-06a1c13f98c8)
