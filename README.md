@@ -9,6 +9,11 @@
 <br>
 https://esbuild.github.io/
 
+## 🐼 프로젝트 실행 방법
+- 프로젝트 다운로드 후
+- npm install
+- npm start
+
 ## 🐼 프로젝트 소개
 
 ### 👨‍👧‍👧 개발 기간
@@ -42,8 +47,17 @@ https://esbuild.github.io/
 - 바벨과 웹팩을 한번에 동작시켜 코드를 번들링해주는 모듈.
 <img width="834" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/7008af89-af80-45b4-9db9-360323d1f4f7">
 
-
 ### 👨‍👧‍👧 ESBuild를 통한 코드 번들링 과정
 - ESBuild를 웹에서 동작하기 위해서 Webassembly 버전인 'ESBuild wasm'을 사용.
 - 웹에서 ESBuild를 사용하여 React 코드를 번들링하는 경우 React 모듈 파일을 찾을 수 없음. 따라서 아래의 그림과 같이 Plugin을 사용하여 별도의 NPM 저장소에서 React 모듈을 가져오는 방식으로 구현  
 <img width="896" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/aa57b942-a667-4c19-8fe9-285e60e81444">
+
+### 👨‍👧‍👧 아키텍쳐 개선
+- 코드 번들링 과정을 모두 API 통신으로 처리하는 Code Pen과 같은 일반적인 코딩 툴 사이트는 아래와 같은 구조로 되어 있다.
+![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/29878dd3-9819-4a67-aa52-a213bb9e028d)
+
+- ESBuild를 사용한 코드 번들링을 추가하고, iframe의 옵션값을 활용하여 아래와 같이 아키텍처를 개선 (더 자세한 내용은 블로그 링크 참조) 
+![image](https://github.com/TaeHyeon47/muncCode/assets/96715209/f7f37517-bcaa-4b5a-8dc8-4738e63f8c8d)
+
+
+
