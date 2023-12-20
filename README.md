@@ -71,6 +71,6 @@ https://esbuild.github.io/
 - Cell은 코드를 입력하는 화면 단위이며, Bundles은 Cell 코드를 번들링하는 곳입니다.
 - Action은 update, delete, insertCell, moveCell, fetchCell 총 5개로 구성되어 있습니다.
 
-<img width="866" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/73084e48-1ffe-42fd-818f-a26925b2171f">
+<img width="867" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/552adeed-1f57-40da-8d04-f87ee723569e">
 
 
