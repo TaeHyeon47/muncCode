@@ -7,7 +7,6 @@
 <img width="2029" alt="image" src="https://github.com/TaeHyeon47/muncCode/assets/96715209/9e1dfddd-d133-40e9-a7f7-a32568ab504d">
 
 <br>
-https://esbuild.github.io/
 
 ## 🐼 프로젝트 실행 방법
 - 프로젝트 다운로드 후
