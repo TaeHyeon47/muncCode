@@ -19,7 +19,7 @@
 - 2023년 01월 01일 ~ 12월 31일 (총 1년) : 회사 근무와 병행
 
 ### 👨‍👧‍👧 사용 기술 스택
-- Typescript, JavaScript
+- Typescript
 - React, Redux, 
 - ESBuild, Localforage
 - HTML5, CSS
